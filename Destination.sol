@@ -24,7 +24,7 @@ contract Destination is AccessControl {
 
 	function wrap(address _underlying_token, address _recipient, uint256 _amount ) public onlyRole(WARDEN_ROLE) {
 		//YOUR CODE HERE
-		address wrapped = underlying_tokens[_underlying_token];
+		address wrapped = wrapped_tokens[_underlying_token];
 
 		// must be created first
 		require(wrapped != address(0), "Token not registered!");
@@ -42,7 +42,7 @@ contract Destination is AccessControl {
 		address underlying = underlying_tokens[_wrapped_token];
 
 		// must be recoginized
-		require(underlying != address(0), "Invalid wrapped token!");
+		require(underlying != address(0), "Token not registered!");
 
 		// burn tokens from caller
 		BridgeToken(_wrapped_token).burnFrom(msg.sender, _amount);
