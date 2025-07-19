@@ -59,6 +59,8 @@ contract Destination is AccessControl {
 		BridgeToken newToken = new BridgeToken(_underlying_token, name, symbol, address(this));
 		address wrapped = address(newToken);
 
+		require(wrapped != address(0), "Token deployment failed!");
+
 		// store mapping
 		underlying_tokens[_underlying_token] = wrapped;
 		wrapped_tokens[wrapped] = _underlying_token;
